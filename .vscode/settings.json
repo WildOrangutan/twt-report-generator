@@ -1,0 +1,13 @@
+{
+    "python.pythonPath": "python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./test",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.unittestEnabled": true
+}
