@@ -4,10 +4,10 @@ from src.EventType import EventType
 class ExportReaderTest(unittest.TestCase):
 
     def testIn(self):
-        typeIn = EventType("in")
+        typeIn = EventType.parse(" in ")
         self.assertEquals(typeIn, EventType.IN)
 
     def testOut(self):
-        typeOut = EventType("out")
+        typeOut = EventType.parse(" out ")
         self.assertEquals(typeOut, EventType.OUT)
 
