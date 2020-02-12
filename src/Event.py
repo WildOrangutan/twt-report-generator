@@ -10,7 +10,7 @@ class Event:
 
     @classmethod
     def parse(self, string):
-        # 2020-01-06 08:18;in;Default;
+        # Example string: 2020-01-06 08:18;in;Default;
         values = self.__splitString(self, string)
         dateTime = self.__parseDate(self, values[0])
         eventType = EventType.parse(values[1])
