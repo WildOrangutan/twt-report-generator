@@ -27,7 +27,10 @@ class Event:
     @staticmethod
     def __parseDate(string):
         dateTimeFormat = "%Y-%m-%d %H:%M"
-        return datetime.strptime(string, dateTimeFormat)
+        try:
+            return datetime.strptime(string, dateTimeFormat)
+        except Exception as e:
+            raise ParseError(f"Failed to parse date from '{string}'") from e
 
         
 
