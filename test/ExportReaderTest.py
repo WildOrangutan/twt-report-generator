@@ -6,7 +6,7 @@ from src.ExportReader import ExportReader
 
 class ExportReaderTest(unittest.TestCase):
 
-    def testing(self):
+    def iterator(self):
         eventLines = ["time;type;task;text", "2000-01-02 03:04;in;Hello;",
                 "3000-02-03 04:05;out;World;"]
         lineIter = iter(eventLines)
