@@ -4,6 +4,7 @@ from src.Event import Event
 from src.EventType import EventType
 from src.ExportReader import ExportReader
 
+
 class ExportReaderTest(unittest.TestCase):
 
     def iterator(self):

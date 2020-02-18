@@ -1,6 +1,7 @@
 from enum import Enum
 from src.ParseError import ParseError
 
+
 class EventType(Enum):
     IN = "in"
     OUT = "out"

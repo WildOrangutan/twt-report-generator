@@ -1,6 +1,7 @@
 import unittest
 from src.EventType import EventType
 
+
 class ExportReaderTest(unittest.TestCase):
 
     def testIn(self):

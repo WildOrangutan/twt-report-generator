@@ -2,6 +2,7 @@ from typing import Iterable
 from src.Event import Event
 from src.EventParser import EventParser
 
+
 class ExportReader:
 
     def __init__(self, fileLineIterator: Iterable[str]):
