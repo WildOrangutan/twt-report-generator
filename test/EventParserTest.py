@@ -24,4 +24,4 @@ class EventParserTest(TestCase):
         expectedDate = datetime(year=2000, month=1, day=2, hour=3, minute=4)
         expectedType = EventType.IN
         expectedEvent = Event(datetime=expectedDate, eventType=expectedType)
-        self.assertEquals(actualEvent, expectedEvent)
+        self.assertEqual(actualEvent, expectedEvent)

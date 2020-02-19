@@ -14,14 +14,14 @@ class ExportReaderTest(TestCase):
 
         reader = ExportReader(lineIter)
 
-        self.assertEquals(
+        self.assertEqual(
             Event(
                 datetime=datetime(year=2000, month=1, day=2, hour=3, minute=4),
                 eventType=EventType.IN
             ),
             next(reader)
         )
-        self.assertEquals(
+        self.assertEqual(
             Event(
                 datetime=datetime(year=3000, month=2, day=3, hour=4, minute=5),
                 eventType=EventType.OUT
