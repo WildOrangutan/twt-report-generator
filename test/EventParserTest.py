@@ -8,13 +8,13 @@ from src.EventType import EventType
 
 class EventParserTest(TestCase):
 
-    def invalidHeader(self):
+    def testInvalidHeader(self):
         header = "monkeys;love;bananas;"
         
         with self.assertRaises(ParseError):
             EventParser(header)
 
-    def parseTest(self):
+    def testParse(self):
         header = "time;type;task;text"
         event = "2000-01-02 03:04;in;Hello;"
         eventParser = EventParser(header)
