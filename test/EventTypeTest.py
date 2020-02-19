@@ -2,7 +2,7 @@ from unittest import TestCase
 from src.EventType import EventType
 
 
-class ExportReaderTest(TestCase):
+class EventTypeTest(TestCase):
 
     def testIn(self):
         typeIn = EventType.parse(" in ")
