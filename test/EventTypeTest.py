@@ -1,8 +1,8 @@
-import unittest
+from unittest import TestCase
 from src.EventType import EventType
 
 
-class ExportReaderTest(unittest.TestCase):
+class ExportReaderTest(TestCase):
 
     def testIn(self):
         typeIn = EventType.parse(" in ")

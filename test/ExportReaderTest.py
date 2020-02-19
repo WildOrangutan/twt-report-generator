@@ -1,11 +1,11 @@
-import unittest
+from unittest import TestCase
 from datetime import datetime
 from src.Event import Event
 from src.EventType import EventType
 from src.ExportReader import ExportReader
 
 
-class ExportReaderTest(unittest.TestCase):
+class ExportReaderTest(TestCase):
 
     def iterator(self):
         eventLines = ["time;type;task;text", "2000-01-02 03:04;in;Hello;",
