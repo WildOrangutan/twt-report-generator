@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+import yaml
 
 @dataclass
 class Config:
@@ -12,3 +12,9 @@ class Config:
         name = self.fullname
         if name==None or name.strip()=="":
             raise ValueError(f"Invalid fullname: '{name}'")
+    
+    @classmethod
+    def parseYaml(cls, string:str):
+        dictionary = yaml.safe_load(string)
+        fullname = dictionary['fullname']
+        return cls(fullname=fullname)

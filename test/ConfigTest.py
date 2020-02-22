@@ -15,3 +15,10 @@ class ConfigTest(TestCase):
 
         with self.assertRaises(ValueError):
             Config(" ")
+    
+    def testParseYaml(self):
+        yaml = '''
+        fullname: Batman
+        '''
+        # Atm it's fine if no error is raised
+        Config.parseYaml(yaml)
