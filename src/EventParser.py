@@ -31,10 +31,13 @@ class EventParser:
 
     def __splitString(self, string):
         values = string.split(self.__DELIMITER)
+        self.__validateStringParts(values)
+        return values
+
+    def __validateStringParts(self, values):
         length = len(values)
         if length==0 or length < 2:
             raise ParseError(f"Expected at least 2 string parts, found {length}")
-        return values
 
     def __parseDate(self, string):
         dateTimeFormat = "%Y-%m-%d %H:%M"
