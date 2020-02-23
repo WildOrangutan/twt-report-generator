@@ -35,9 +35,11 @@ class EventParser:
         return values
 
     def __validateStringParts(self, values):
-        length = len(values)
-        if length==0 or length < 2:
-            raise ParseError(f"Expected at least 2 string parts, found {length}")
+        actualLength = len(values)
+        expectedLength = 2
+        if actualLength==0 or actualLength < expectedLength:
+            msg = f"Expected at least {expectedLength} string parts, found {actualLength}"
+            raise ParseError(msg)
 
     def __parseDate(self, string):
         dateTimeFormat = "%Y-%m-%d %H:%M"
