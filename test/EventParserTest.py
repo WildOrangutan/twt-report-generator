@@ -4,6 +4,7 @@ from src.Event import Event
 from src.ParseError import ParseError
 from src.EventParser import EventParser
 from src.EventType import EventType
+from src.Task import Task
 
 
 class EventParserTest(TestCase):
@@ -16,12 +17,14 @@ class EventParserTest(TestCase):
 
     def testParse(self):
         header = "time;type;task;text"
-        event = "2000-01-02 03:04;in;Hello;"
+        event = "2000-01-02 03:04;in;Work;"
         eventParser = EventParser(header)
 
         actualEvent = eventParser.parse(event)
 
         expectedDate = datetime(year=2000, month=1, day=2, hour=3, minute=4)
         expectedType = EventType.IN
-        expectedEvent = Event(datetime=expectedDate, eventType=expectedType)
+        expectedTask = Task.WORK
+        expectedEvent = Event(datetime=expectedDate, eventType=expectedType, 
+                task=expectedTask)
         self.assertEqual(actualEvent, expectedEvent)

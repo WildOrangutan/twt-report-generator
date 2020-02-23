@@ -2,6 +2,7 @@ from datetime import datetime
 from src.ParseError import ParseError
 from src.Event import Event
 from src.EventType import EventType
+from src.Task import Task
 
 
 class EventParser:
@@ -9,9 +10,11 @@ class EventParser:
     __DELIMITER = ";"
     __COLUMN_DATETIME = "time"
     __COLUMN_EVENT_TYPE = "type"
+    __COLUMN_TASK = "task"
 
     __indexDatetime = -1
     __indexEventType = -1
+    __indexTask = -1
 
     def __init__(self, header: str):
         self.__initColumnIndexes(header)
@@ -21,13 +24,15 @@ class EventParser:
         headers = self.__splitString(header)
         __indexDatetime = headers.index(self.__COLUMN_DATETIME)
         __indexEventType = headers.index(self.__COLUMN_EVENT_TYPE)
+        __indexTask = headers.index(self.__COLUMN_TASK)
 
     def parse(self, eventString: str) -> Event:
         # Example event string: "2020-01-06 08:18;in;Default;"
         strings = self.__splitString(eventString)
         dateTime = self.__parseDate(strings[0])
         eventType = EventType.parse(strings[1])
-        return Event(datetime=dateTime, eventType=eventType)
+        task = Task.parse(strings[2])
+        return Event(datetime=dateTime, eventType=eventType, task=task)
 
     def __splitString(self, string):
         values = string.split(self.__DELIMITER)
@@ -36,7 +41,7 @@ class EventParser:
 
     def __validateStringParts(self, values):
         actualLength = len(values)
-        expectedLength = 2
+        expectedLength = 3
         if actualLength==0 or actualLength < expectedLength:
             msg = f"Expected at least {expectedLength} string parts, found {actualLength}"
             raise ParseError(msg)
