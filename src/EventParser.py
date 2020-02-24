@@ -22,9 +22,9 @@ class EventParser:
     def __initColumnIndexes(self, header):
         # Example header: "time;type;task;text"
         headers = self.__splitString(header)
-        __indexDatetime = headers.index(self.__COLUMN_DATETIME)
-        __indexEventType = headers.index(self.__COLUMN_EVENT_TYPE)
-        __indexTask = headers.index(self.__COLUMN_TASK)
+        self.__indexDatetime = headers.index(self.__COLUMN_DATETIME)
+        self.__indexEventType = headers.index(self.__COLUMN_EVENT_TYPE)
+        self.__indexTask = headers.index(self.__COLUMN_TASK)
 
     def parse(self, eventString: str) -> Event:
         # Example event string: "2020-01-06 08:18;in;Default;"
