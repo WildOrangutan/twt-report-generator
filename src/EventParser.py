@@ -29,9 +29,9 @@ class EventParser:
     def parse(self, eventString: str) -> Event:
         # Example event string: "2020-01-06 08:18;in;Default;"
         strings = self.__splitString(eventString)
-        dateTime = self.__parseDate(strings[0])
-        eventType = EventType.parse(strings[1])
-        task = Task.parse(strings[2])
+        dateTime = self.__parseDate(strings[self.__indexDatetime])
+        eventType = EventType.parse(strings[self.__indexEventType])
+        task = Task.parse(strings[self.__indexTask])
         return Event(datetime=dateTime, eventType=eventType, task=task)
 
     def __splitString(self, string):
