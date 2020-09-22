@@ -6,24 +6,24 @@ from typing import Iterable
 @dataclass
 class TimeTable:
     timeRows: Iterable[TimeRow]
-    __columnCount = -1
+    _columnCount = -1
 
     def __post_init__(self):
-        self.__initColumnCount()
-        self.__validateRows()
+        self._initColumnCount()
+        self._validateRows()
 
-    def __initColumnCount(self):
+    def _initColumnCount(self):
         for timeRow in self.timeRows:
-            self.__columnCount = timeRow.columnCount()
+            self._columnCount = timeRow.columnCount()
             return
         raise RuntimeError("No timeRows to get column count from")
     
-    def __validateRows(self):
+    def _validateRows(self):
         for timeRow in self.timeRows:
-            self.__validateRow(timeRow)
+            self._validateRow(timeRow)
 
-    def __validateRow(self, timeRow):
-        expectedColumns = self.__columnCount
+    def _validateRow(self, timeRow):
+        expectedColumns = self._columnCount
         actualColumns = timeRow.columnCount()
         if expectedColumns != actualColumns:
             raise ValueError(f"Column count mismatch. Expected {expectedColumns}, \
