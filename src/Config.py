@@ -6,9 +6,9 @@ class Config:
     fullname: str
 
     def __post_init__(self):
-        self.validateFullName()
+        self._validateFullName()
 
-    def validateFullName(self):
+    def _validateFullName(self):
         name = self.fullname
         if name==None or name.strip()=="":
             raise ValueError(f"Invalid fullname: '{name}'")
