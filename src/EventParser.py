@@ -7,26 +7,26 @@ from src.Task import Task
 
 class EventParser:
 
-    __DELIMITER = ";"
-    __COLUMN_DATETIME = "time"
-    __COLUMN_EVENT_TYPE = "type"
-    __COLUMN_TASK = "task"
+    _DELIMITER = ";"
+    _COLUMN_DATETIME = "time"
+    _COLUMN_EVENT_TYPE = "type"
+    _COLUMN_TASK = "task"
 
-    __indexDatetime = -1
-    __indexEventType = -1
-    __indexTask = -1
+    _indexDatetime = -1
+    _indexEventType = -1
+    _indexTask = -1
 
     def __init__(self, header: str):
-        self.__initColumnIndexes(header)
+        self._initColumnIndexes(header)
         
-    def __initColumnIndexes(self, header):
+    def _initColumnIndexes(self, header):
         # Example header: "time;type;task;text"
-        headers = self.__splitString(header)
-        self.__indexDatetime = self.__getHeaderIndex(headers, self.__COLUMN_DATETIME)
-        self.__indexEventType = self.__getHeaderIndex(headers, self.__COLUMN_EVENT_TYPE)
-        self.__indexTask = self.__getHeaderIndex(headers, self.__COLUMN_TASK)
+        headers = self._splitString(header)
+        self._indexDatetime = self._getHeaderIndex(headers, self._COLUMN_DATETIME)
+        self._indexEventType = self._getHeaderIndex(headers, self._COLUMN_EVENT_TYPE)
+        self._indexTask = self._getHeaderIndex(headers, self._COLUMN_TASK)
 
-    def __getHeaderIndex(self, headers, header):
+    def _getHeaderIndex(self, headers, header):
         try:
             return headers.index(header)
         except ValueError as e:
@@ -34,25 +34,25 @@ class EventParser:
 
     def parse(self, eventString: str) -> Event:
         # Example event string: "2020-01-06 08:18;in;Default;"
-        strings = self.__splitString(eventString)
-        dateTime = self.__parseDate(strings[self.__indexDatetime])
-        eventType = EventType.parse(strings[self.__indexEventType])
-        task = Task.parse(strings[self.__indexTask])
+        strings = self._splitString(eventString)
+        dateTime = self._parseDate(strings[self._indexDatetime])
+        eventType = EventType.parse(strings[self._indexEventType])
+        task = Task.parse(strings[self._indexTask])
         return Event(datetime=dateTime, eventType=eventType, task=task)
 
-    def __splitString(self, string):
-        values = string.split(self.__DELIMITER)
-        self.__validateStringParts(values)
+    def _splitString(self, string):
+        values = string.split(self._DELIMITER)
+        self._validateStringParts(values)
         return values
 
-    def __validateStringParts(self, values):
+    def _validateStringParts(self, values):
         actualLength = len(values)
         expectedLength = 3
         if actualLength==0 or actualLength < expectedLength:
             msg = f"Expected at least {expectedLength} string parts, found {actualLength}"
             raise ParseError(msg)
 
-    def __parseDate(self, string):
+    def _parseDate(self, string):
         dateTimeFormat = "%Y-%m-%d %H:%M"
         try:
             return datetime.strptime(string, dateTimeFormat)
